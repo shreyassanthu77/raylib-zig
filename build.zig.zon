@@ -4,12 +4,13 @@
     .fingerprint = 0xc4cfa8c610114f28,
     .dependencies = .{
         .raylib = .{
-            .url = "git+https://github.com/raysan5/raylib#e70f9157bcae046804e754e98a2694adcfdbfa5d",
-            .hash = "1220f6aef0d678ba6e3d67a60069b5f32dc965a930c797f463840d224759d615b864",
+            .url = "git+https://github.com/Shreyassanthu77/raylib#5de21863defda043ad95fab598dd1b971ef52360",
+            .hash = "raylib-5.5.0-3imyGstFzQAvJZTAmbqEbZ7kKPTer1a1BTv9L3P7iKGx",
         },
         .raygui = .{
             .url = "git+https://github.com/raysan5/raygui#76b36b597edb70ffaf96f046076adc20d67e7827",
             .hash = "1220ce6e40b454766d901ac4a19b2408f84365fcad4e4840c788b59f34a0ed698883",
+            .lazy = true,
         },
     },
     .minimum_zig_version = "0.14.0",

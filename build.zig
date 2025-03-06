@@ -34,12 +34,12 @@ fn getRaylib(b: *std.Build, target: std.Build.ResolvedTarget, optimize: std.buil
 
     const raylib = raylib_dep.artifact("raylib");
 
-    const raygui_dep = b.dependency("raygui", .{
-        .target = target,
-        .optimize = optimize,
-    });
+    // const raygui_dep = b.lazyDependency("raygui", .{
+    //     .target = target,
+    //     .optimize = optimize,
+    // });
 
-    rl.addRaygui(b, raylib, raygui_dep);
+    // rl.addRaygui(b, raylib, raygui_dep);
 
     b.installArtifact(raylib);
     return raylib;
@@ -74,7 +74,7 @@ pub fn build(b: *std.Build) !void {
 
     const raylib_artifact = this.getRaylib(b, target, optimize, Options.getOptions(b));
     const raylib = this.getModule(b, target, optimize);
-    const raygui = this.gui.getModule(b, target, optimize);
+    // const raygui = this.gui.getModule(b, target, optimize);
 
     const examples = [_]Program{
         .{
@@ -295,7 +295,7 @@ pub fn build(b: *std.Build) !void {
         if (target.query.os_tag == .emscripten) {
             const exe_lib = try emcc.compileForEmscripten(b, ex.name, ex.path, target, optimize);
             exe_lib.root_module.addImport("raylib", raylib);
-            exe_lib.root_module.addImport("raygui", raygui);
+            // exe_lib.root_module.addImport("raygui", raygui);
 
             // Note that raylib itself isn't actually added to the exe_lib
             // output file, so it also needs to be linked with emscripten.
@@ -319,7 +319,7 @@ pub fn build(b: *std.Build) !void {
             });
             exe.linkLibrary(raylib_artifact);
             exe.root_module.addImport("raylib", raylib);
-            exe.root_module.addImport("raygui", raygui);
+            // exe.root_module.addImport("raygui", raygui);
 
             const run_cmd = b.addRunArtifact(exe);
             const run_step = b.step(ex.name, ex.desc);
